@@ -1,0 +1,9 @@
+version: "2"
+services: 
+  cbdb:
+    build: .
+    ports:
+      - "3001:3001"
+    volumes: 
+      - .:/code
+    
