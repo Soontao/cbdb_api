@@ -16,6 +16,14 @@ def all_table_name():
 
 
 @lru_cache()
+def table(table_name: str, param: dict):
+	if str.upper(table_name) in all_table_name():
+		pass
+	else:
+		raise Exception("no such table")
+
+
+@lru_cache()
 def table_desc(tablename: str):
 	def to_dict(record: list):
 		# need to attention, there are 6 field in one record, but I can only understand 3 of them

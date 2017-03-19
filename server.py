@@ -12,15 +12,15 @@ def home():
 	return json_response(200, r)
 
 
-@app.route("/table-desc", defaults={'tablename': 'all_table'})
-@app.route("/table-desc(<string:tablename>)")
-def tables(tablename: str):
+@app.route("/table-desc", defaults={'table_name': 'all_table'})
+@app.route("/table-desc(<string:table_name>)")
+def tables(table_name: str):
 	r = []
 	status = 200
-	if tablename == "all_table":
+	if table_name == "all_table":
 		r = db.all_table_desc()
 	else:
-		r = db.table_desc(tablename)
+		r = db.table_desc(table_name)
 	return json_response(status, r)
 
 
