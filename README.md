@@ -2,7 +2,7 @@
 
 cbdb to api
 
-in dev
+in dev，欢迎与我交流，theo.sun@outlook.com
 
 ## install
 
@@ -15,18 +15,24 @@ download and save **cbdb_sqlite.db** in root directory
 ## api
 
 * http://server/ -- home page
-* http://server/table-desc -- all table describe info
+* http://server/table-desc() -- all table describe info
 * http://server/table-desc([tablename]) -- specific table describe info
-* http://server/query([sql]) -- query table
+* http://server/query([sql]) -- query table with sql
+
+Note: 可以不带括号
+
 
 ## sample
 
 ```text
-GET https://api.fornever.org/cbdb
-GET https://api.fornever.org/cbdb/table-desc
-GET https://api.fornever.org/cbdb/table-desc(address)
-GET https://api.fornever.org/cbdb/query(select * from addresses limit 10)
+GET https://cbdb-api.fornever.org
+GET https://cbdb-api.fornever.org/table-desc
+GET https://cbdb-api.fornever.org/table-desc()
+GET https://cbdb-api.fornever.org/table-desc(addresses)
+GET https://cbdb-api.fornever.org/query(select * from addresses limit 10)
+GET https://cbdb-api.fornever.org/query()?sql=select * from addresses limit 10
 ```
+
 
 ## todo
 
@@ -35,3 +41,4 @@ GET https://api.fornever.org/cbdb/query(select * from addresses limit 10)
 * [ ] server metadata
 * [ ] any rdb data query server
 * [ ] make api easy to use
+* [ ] history address name change

@@ -1,5 +1,4 @@
-import db, os
-
+import db
 
 
 def test_get_all_tables_name():
@@ -13,9 +12,19 @@ def test_desc_of_table():
 	assert len(desc) > 0
 
 
+def test_table_field_desc():
+	table_name = 'event_codes'
+	field_name = 'c_event_name'
+	field_desc = 'event_name(事件名稱-英文)'
+	assert db.table_field_desc(table_name, field_name)['DumpFldNm'] == field_desc
+
+
 def test_all_table_desc():
 	assert db.all_table_desc()
 
 
 def test_drop_table():
-	r = db.conn.execute("delete from addresses where 1=1;").fetchall()
+	try:
+		r = db.conn.execute("delete from addresses where 1=1;").fetchall()
+	except Exception as e:
+		assert e
