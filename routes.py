@@ -7,24 +7,20 @@ from util import *
 def routes(app):
 	@app.route('/')
 	def index():
+		"""index page"""
 		r = {}
 		for rule in app.url_map.iter_rules():
-			# Filter out rules we can't navigate to in a browser
-			# and rules that require parameters
-			if "GET" in rule.methods and has_no_empty_params(rule):
+			# Filter out rules we can't navigate to in a browser, and rules that require parameters
+			if has_no_empty_params(rule):
 				endpoint = rule.endpoint
-				url = url_decode(url_for(endpoint, **(rule.defaults or {})))
-				func = app.view_functions[endpoint]
-				args = rule.defaults or {}
-				methods = list(rule.methods)
-				func_doc = str.strip(func.__doc__).splitlines()[0] if func.__doc__ else ""
+				end_point_url = url_decode(url_for(endpoint, **(rule.defaults or {})))
+				end_point_func = app.view_functions[endpoint]
 				r[endpoint] = {
-					"url": url,
-					"describe": func_doc,
-					"methods": methods,
-					"args": args
+					"url": end_point_url,
+					"describe": str.strip(end_point_func.__doc__).splitlines()[0] if end_point_func.__doc__ else "",
+					"methods": list(rule.methods),
+					"args": rule.defaults or {}
 				}
-			# links is now a list of url, endpoint tuples
 		return json_response(200, r, True)
 
 	@app.route("/table-desc", defaults={'table_name': ""})

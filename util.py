@@ -4,11 +4,11 @@ import urllib
 from flask import Response
 
 
-def json_response(status: int, obj: object, sort=False):
+def json_response(status=200, obj={}, sort=False):
 	# wrap a response
 	r = {"_system": "cbdb api system", "result": obj}
 	return Response(response=json.dumps(r, ensure_ascii=False, sort_keys=sort, indent=2), status=200,
-	                mimetype="application/json")
+									mimetype="application/json")
 
 
 def has_no_empty_params(rule):

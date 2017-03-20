@@ -42,3 +42,11 @@ GET https://cbdb-api.fornever.org/query()?sql=select * from addresses limit 10
 * [ ] any rdb data query server
 * [ ] make api easy to use
 * [ ] history address name change
+
+## Reference
+
+* [CHINA BIOGRAPHICAL DATABASE PROJECT (CBDB)](http://projects.iq.harvard.edu/chinesecbdb)
+
+## LICENCE
+
+Since CBDB uses [CC BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh), the license is also used for this project
