@@ -5,6 +5,8 @@ from util import *
 
 
 def routes(app):
+	"""app routes"""
+
 	@app.route('/')
 	def index():
 		"""index page"""
@@ -23,7 +25,11 @@ def routes(app):
 				}
 		return json_response(200, r, True)
 
-	@app.route("/table-desc", defaults={'table_name': ""})
+	@app.route("/tables()")
+	def cbdb_table_basic_info():
+		"""get basic table infos"""
+		return json_response(obj=db.all_table_info())
+
 	@app.route("/table-desc()", defaults={'table_name': ""})
 	@app.route("/table-desc(<string:table_name>)")
 	def cbdb_table_describe(table_name: str):
@@ -42,7 +48,6 @@ def routes(app):
 			raise Exception("no such table")
 		return json_response(status, r, True)
 
-	@app.route("/query", defaults={"sql": ""})
 	@app.route("/query()", defaults={"sql": ""})
 	@app.route("/query(<string:sql>)")
 	def cbdb_sql_query(sql):
@@ -51,5 +56,11 @@ def routes(app):
 		r = [];
 		status = 200;
 		c = db.conn.execute(sql)
-		r = db.record_to_dict_list(db.field_names(c), c.fetchall())
+		r = db.records_to_dict_list(db.field_names(c), c.fetchall())
 		return json_response(status, r)
+
+	@app.route("/tree/office-type()")
+	@app.route("/tree/office-type")
+	def cbdb_office_type_tree():
+		"""get the office type tree"""
+		return json_response(obj=db.offce_type_tree())
