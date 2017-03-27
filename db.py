@@ -144,19 +144,21 @@ def table_tree(table_name, node_name_clm, node_id_clm, node_parent_id_clm, root_
 	"""common use table to tree constructor"""
 
 	def tree_childs(parent_id):
-		r = {}
+		r = []
 		r_nodes = object_list_execute(SQL_SELECT_TREE_CHILDS % (table_name, node_parent_id_clm, parent_id))
 		if len(r_nodes) > 0:
 			for node in r_nodes:
+				tmp = {}
 				node_name = node[node_name_clm]
 				node_id = node[node_id_clm]
 				node_parent_id = node[node_parent_id_clm]
 				node_children = tree_childs(node_id)
-				r[node_name] = {}
+				tmp['name'] = node_name
 				if node_children:
-					r[node_name]["children"] = node_children
+					tmp["children"] = node_children
 				for info_column_name in info_columns_name:
-					r[node_name][info_column_name] = node[info_column_name]
+					tmp[info_column_name] = node[info_column_name]
+				r.append(tmp)
 		return r
 
 	return tree_childs(root_id)
