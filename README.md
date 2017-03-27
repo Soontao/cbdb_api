@@ -31,14 +31,15 @@ GET https://cbdb-api.fornever.org/table-desc()
 GET https://cbdb-api.fornever.org/table-desc(addresses)
 GET https://cbdb-api.fornever.org/query(select * from addresses limit 10)
 GET https://cbdb-api.fornever.org/query()?sql=select * from addresses limit 10
+GET https://cbdb-api.fornever.org/tree/office-type
 ```
 
 
 ## todo
 
-* [ ] query api
+* [x] query api
 * [x] query should be limit, only can be query
-* [ ] server metadata
+* [x] server metadata
 * [ ] any rdb data query server
 * [ ] make api easy to use
 * [ ] history address name change
