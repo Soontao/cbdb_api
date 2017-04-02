@@ -20,14 +20,14 @@ def routes(app):
                 end_point_func = app.view_functions[endpoint]
                 r[endpoint] = {
                     "url":
-                        end_point_url,
+                    end_point_url,
                     "describe":
-                        str.strip(end_point_func.__doc__).splitlines()[0]
-                        if end_point_func.__doc__ else "",
+                    str.strip(end_point_func.__doc__).splitlines()[0]
+                    if end_point_func.__doc__ else "",
                     "methods":
-                        list(rule.methods),
+                    list(rule.methods),
                     "args":
-                        rule.defaults or {}
+                    rule.defaults or {}
                 }
         return json_response(200, r, True)
 
@@ -37,14 +37,15 @@ def routes(app):
         return json_response(obj=db.all_table_info())
 
     @app.route("/table-desc")
-    def cbdb_table_describe(table_name: str):
+    def cbdb_table_describe():
         """
         get one or all tables describe infos
         :param table_name: optional, empty means all table desc
         """
         r = []
         table_name = request.args.get("table_name") or ""
-        with_field_info = False if str(request.args.get("with_field_info")).lower() == "false" else True
+        with_field_info = False if str(
+            request.args.get("with_field_info")).lower() == "false" else True
         status = 200
         if not table_name:
             r = db.all_table_desc()
