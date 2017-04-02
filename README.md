@@ -15,9 +15,9 @@ download and save **cbdb_sqlite.db** in root directory, you can download it from
 ## api
 
 * http://server/ -- home page
-* http://server/table-desc() -- all table describe info
-* http://server/table-desc([tablename]) -- specific table describe info
-* http://server/query([sql]) -- query table with sql
+* http://server/table-desc -- all table describe info
+* http://server/table-desc?table_name=[tablename] -- specific table describe info
+* http://server/query?sql=[sql] -- query table with sql
 * http://server/tree/office-type -- give an office_type_tree json hierarchy object
 
 Note: 可以不带括号
@@ -27,10 +27,9 @@ Note: 可以不带括号
 
 ```text
 GET https://cbdb-api.fornever.org
-GET https://cbdb-api.fornever.org/table-desc()
-GET https://cbdb-api.fornever.org/table-desc(addresses)
-GET https://cbdb-api.fornever.org/query(select * from addresses limit 10)
-GET https://cbdb-api.fornever.org/query()?sql=select * from addresses limit 10
+GET https://cbdb-api.fornever.org/table-desc
+GET https://cbdb-api.fornever.org/table-desc?table_name=addresses
+GET https://cbdb-api.fornever.org/query?sql=select * from addresses limit 10
 GET https://cbdb-api.fornever.org/tree/office-type
 ```
 
